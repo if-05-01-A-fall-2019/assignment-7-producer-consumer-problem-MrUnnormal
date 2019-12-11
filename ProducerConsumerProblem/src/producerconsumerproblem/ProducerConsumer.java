@@ -17,6 +17,7 @@ public class ProducerConsumer {
             if(currentItems == MAX_ITEMS) {
                 wait();
             }
+            System.out.println("Produced " + item);
             buffer.push(item);
             currentItems++;
             if(currentItems == 1) {
@@ -32,6 +33,7 @@ public class ProducerConsumer {
                 wait();
             }
             item = (int) buffer.pop();
+            System.out.println("Consmed " + item);
             currentItems--;
             if(currentItems == MAX_ITEMS - 1) {
                 notify();
