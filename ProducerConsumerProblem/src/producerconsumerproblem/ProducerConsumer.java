@@ -16,13 +16,13 @@ public class ProducerConsumer {
         while(true) {
             Integer item = random.nextInt(5000);
             if(currentItems == MAX_ITEMS) {
-                wait();
+                wait(); // Only works in synchronized block; throws IllegalMonitorStateException
             }
             System.out.println("Produced " + item);
             buffer.push(item);
             currentItems++;
             if(currentItems == 1) {
-                notify();
+                notify();   // Only works in synchronized block; throws IllegalMonitorStateException
             }   
         }
     }
@@ -31,13 +31,13 @@ public class ProducerConsumer {
         int item;
         while(true) {
             if(currentItems == 0) {
-                wait();
+                wait(); // Only works in synchronized block; throws IllegalMonitorStateException
             }
             item = (int) buffer.pop();
             System.out.println("Consumed " + item);
             currentItems--;
             if(currentItems == MAX_ITEMS - 1) {
-                notify();
+                notify();   // Only works in synchronized block; throws IllegalMonitorStateException
             }
         }  
     }
